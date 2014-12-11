@@ -1,0 +1,61 @@
+@(title: String)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+        <script src="@routes.Assets.at("javascripts/angularjs/angular.js")"></script>
+        <script src="@routes.Assets.at("javascripts/app.js")"></script>
+        <script src="@routes.Assets.at("javascripts/services.js")"></script>
+        <script src="@routes.Assets.at("javascripts/controllers.js")"></script>
+        <script src="@routes.Assets.at("javascripts/directives.js")"></script>
+
+    </head>
+    <body ng-app="sseChat">
+
+        <div ng-controller="ChatCtrl" class="container">
+            <div id="header">
+                <select ng-model="user" ng-options="f.name for f in chooseUsers" ng-change="setCurrentUser(user)" id="userSelect"></select>
+                <p>
+                Your Are:{{user.name}}
+                </p>
+
+
+            <select ng-model="currentChatFriend" ng-change="setCurrentChatFriend(currentChatFriend)"
+            ng-options="f.name for f in chooseUsers | filter:{ name: '!'+user.name}" id="friendSelect"></select>
+
+                <p>
+            Chat With:{{currentChatFriend.value}}
+                </p>
+            </div>
+
+            <div id="chat" class="chatLook" scroll-glue="!glued">
+                <div ng-repeat="msg in msgs">
+                    <div class="col-sm-12">
+                    <p style="margin-bottom: 0px;">
+                        <strong>{{msg.chatUser.name}} says:</strong>
+                        <em style="word-wrap:break-word;font-size: x-small;">({{msg.time}})</em>
+                    </p>
+                    <p style="word-wrap:break-word;font-size:small">{{msg.text}} </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="footer">
+                <form ng-submit="submitMsg()">
+                    <textarea ng-keyup="this.checkForSubmit($event)" ng-model="inputText" ng-class="'chatLook'" placeholder="Say something"
+                    class="ng-pristine ng-valid input-block-level"></textarea>
+                    @*<input type="button" class="btn btn-primary" id="saySomething" value="Submit" ng-click="submitMsg()"/>*@
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>

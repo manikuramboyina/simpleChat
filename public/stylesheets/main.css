@@ -1,0 +1,22 @@
+div.chatLook {
+    height: 200px;
+    width: 400px;
+    border-style: ridge;
+    border-color: gray;
+    overflow-y: auto;
+}
+
+textarea.chatLook{
+    width: 400px;
+
+}
+
+Strong.toUser
+{
+    text-align: right;
+}
+
+Strong.fromUser
+{
+    text-align: right;
+}
