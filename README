@@ -1,4 +1,15 @@
 This is your new Play application
 =================================
 
-This file will be packaged with your application, when using `activator dist`.
+A simple chat application developed using play framework and angularjs.
+
+Also refer the following repo if any issues:
+
+https://github.com/matthiasn/sse-chat
+
+Currently what's included:
+
+1. Chat between users. Sample in services. (only single instance of chat at a time).
+
+
+
