@@ -21,29 +21,43 @@
     <body ng-app="sseChat">
 
         <div ng-controller="ChatCtrl" class="container">
-            <div id="header">
-                <select ng-model="user" ng-options="f.name for f in chooseUsers" ng-change="setCurrentUser(user)" id="userSelect"></select>
-                <p>
+            <div id="header" class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>
                 Your Are:{{user.name}}
-                </p>
-
-
-            <select ng-model="currentChatFriend" ng-change="setCurrentChatFriend(currentChatFriend)"
-            ng-options="f.name for f in chooseUsers | filter:{ name: '!'+user.name}" id="friendSelect"></select>
-
-                <p>
+                        </p>
+                    </div>
+                    <div class="col-md-1">
+                        <select ng-model="user" ng-options="f.name for f in chooseUsers"
+                        ng-change="setCurrentUser(user)" id="userSelect">
+                </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>
             Chat With:{{currentChatFriend.value}}
-                </p>
+                        </p>
+
+                    </div>
+                    <div class="col-md-1">
+                        <select ng-model="currentChatFriend" ng-change="setCurrentChatFriend(currentChatFriend)"
+                        ng-options="f.name for f in chooseUsers | filter:{ name: '!'+user.name}" id="friendSelect"></select>
+                    </div>
+                </div>
             </div>
 
             <div id="chat" class="chatLook" scroll-glue="!glued">
                 <div ng-repeat="msg in msgs">
-                    <div class="col-sm-12">
-                    <p style="margin-bottom: 0px;">
-                        <strong>{{msg.chatUser.name}} says:</strong>
-                        <em style="word-wrap:break-word;font-size: x-small;">({{msg.time}})</em>
-                    </p>
-                    <p style="word-wrap:break-word;font-size:small">{{msg.text}} </p>
+                    <div ng-class="{'span6 ':msg.fromUser.name==user.name,'span6':msg.fromUser.name!=user.name}" style="margin-right : 0 px ;">
+                        <div style="margin-right : 0 px ; width : 300 px ;">
+                            <strong>{{msg.fromUser.name}} says:</strong>
+                            <em style="word-wrap : break-word ; font-size : x-small ;">({{msg.time}})</em>
+                        </div>
+                        <div class="col-sm-9" style="margin-right : 0 px ;">
+                            <p style="word-wrap : break-word ; width : 300 px ; font-size : small">{{msg.text}} </p>
+                        </div>
                     </div>
                 </div>
             </div>

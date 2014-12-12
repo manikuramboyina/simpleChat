@@ -12,4 +12,11 @@ Currently what's included:
 1. Chat between users. Sample in services. (only single instance of chat at a time).
 
 
+Worth Reads:
 
+Server Sent Event Specification:
+
+http://dev.w3.org/html5/eventsource/#the-eventsource-interface
+
+
+Ofcourse, :) The Api docs
